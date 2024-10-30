@@ -1,10 +1,17 @@
 .search {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
     margin: 5px 10px;
+    justify-self: center;
+    align-self: center;
+}
+
+.autocomplete {
+    display: inline-block;
 }
 
 .right {
+    display: inline-block;
     margin: 0;
 }
 
