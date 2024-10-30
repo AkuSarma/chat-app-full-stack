@@ -24,3 +24,14 @@ p {
 li {
     list-style: none;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    margin-top: 2rem;
+}

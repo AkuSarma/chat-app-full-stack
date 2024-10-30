@@ -117,7 +117,7 @@ const ChatContainer = ({socket, fetchChats}) => {
                     <p>{loggedInUser.username}</p>
                 </div>
                 <div className="log-out-btn">
-                    <button onClick={logOut} alt="log out button">👋</button>
+                    <button onClick={logOut} alt="log out button">Logout</button>
                 </div>
             </header>
             <main className="chat-main">
