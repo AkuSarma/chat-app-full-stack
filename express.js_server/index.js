@@ -5,7 +5,10 @@ const http = require("http");
 const cors = require("cors");
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/chatapp'); //connect to db
+mongoose.connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }); //connect to db
 const db = mongoose.connection;
 db.on('error', (error)=> console.error(error));
 db.once('open', () => console.log('Connected to database'));
