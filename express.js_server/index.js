@@ -4,6 +4,7 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const mongoose = require('mongoose');
+require("dotenv").config();
 
 mongoose.connect(process.env.DB_URI, {
       useNewUrlParser: true,
