@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {Link, useNavigate} from 'react-router-dom';
-// import './Registration.css'
 
 const Registration = ({addUser}) => {
     const navigate = useNavigate()
@@ -46,7 +45,7 @@ const Registration = ({addUser}) => {
         }
 
      return (
-       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+       <div className="flex items-center justify-center min-h-screen min-w-[80vw] bg-gray-100">
          <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
            <form onSubmit={handleSubmit} className="space-y-6">
              <h2 className="text-2xl font-semibold text-center text-gray-700">

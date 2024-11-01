@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import UserContext from "../UserContext";
 import { Autocomplete, TextField } from "@mui/material";
-// import "./Search.css";
 
 const Search = ({ filteredFun, addFriend }) => {
   const { loggedInUser, users } = useContext(UserContext);

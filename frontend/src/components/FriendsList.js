@@ -1,5 +1,3 @@
-// import "./FriendsList.css"
-
 const FriendsList = ({friends, filteredChats, currentFriendChat, deleteFriend}) => {
 
     const handleClick = friend => {

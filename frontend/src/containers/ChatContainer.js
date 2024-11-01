@@ -4,7 +4,6 @@ import Chat from "../components/Chat";
 import Search from "../components/Search";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
-// import './ChatContainer.css'
 
 const ChatContainer = ({socket, fetchChats}) => {
 
@@ -110,7 +109,7 @@ const ChatContainer = ({socket, fetchChats}) => {
     }
 
     return (
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4 min-w-[80vw]">
         <header className="w-full max-w-5xl bg-white rounded-lg shadow p-4 flex justify-between items-center mb-6">
           <div>
             <p className="text-gray-600">You are logged in as:</p>
