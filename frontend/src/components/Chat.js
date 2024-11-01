@@ -1,7 +1,7 @@
 import UserContext from "../UserContext";
 import { useContext, useState} from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import "./Chat.css"
+// import "./Chat.css"
 
 
 const Chat = ({currentChat, updateChat, socket}) => {
@@ -36,35 +36,59 @@ const Chat = ({currentChat, updateChat, socket}) => {
     })
 
     return (
-        <div id="chat-box">
+      <div className="flex flex-col h-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <header className="p-4 bg-blue-600 text-white font-bold text-center">
+          <h2>{findUsername()}</h2>
+        </header>
 
-            <h2>{findUsername()}</h2> 
-        
-            <div className="message-box">
-            <ScrollToBottom className="scroll-to-bottom">
-                <div className="message-container">
-              {currentChat.messages.map((message, index) => {
-                return( 
-                <div className={loggedInUser._id === message.user ? "you" : "other"} key={index}>
-                    <p >{message.message}</p>
-                    <p className="message-details">{loggedInUser._id === message.user? 'You' : findUsername()} {message.created}</p>
+        <ScrollToBottom className="flex-1 p-4 bg-gray-100 overflow-y-auto">
+          <div className="space-y-3">
+            {currentChat.messages.map((message, index) => {
+              const isUserMessage = loggedInUser._id === message.user;
+              return (
+                <div
+                  key={index}
+                  className={`flex ${
+                    isUserMessage ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      isUserMessage ? "bg-blue-500 text-white" : "bg-gray-300"
+                    } rounded-lg p-2 max-w-xs break-words`}
+                  >
+                    <p>{message.message}</p>
+                    <p className="text-xs mt-1 text-right opacity-70">
+                      {isUserMessage ? "You" : findUsername()} •{" "}
+                      {message.created}
+                    </p>
+                  </div>
                 </div>
-              )})}
-              </div>
-                </ScrollToBottom>
-            <form id="message-input">
-                <input
-                    type="text"
-                    placeholder="Type message..."
-                    onChange={handleMessageChange}
-                    value={messageInput}
-                />
-                <button onClick={sendMessage} type="submit">&#9658;</button>
-            </form>
-            </div>
+              );
+            })}
+          </div>
+        </ScrollToBottom>
 
-                  
-        </div>
+        <form
+          id="message-input"
+          className="flex items-center p-3 border-t border-gray-300 bg-white"
+          onSubmit={sendMessage}
+        >
+          <input
+            type="text"
+            placeholder="Type message..."
+            onChange={handleMessageChange}
+            value={messageInput}
+            className="flex-1 p-2 mr-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+          />
+          <button
+            type="submit"
+            className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            &#9658;
+          </button>
+        </form>
+      </div>
     );
 
 }

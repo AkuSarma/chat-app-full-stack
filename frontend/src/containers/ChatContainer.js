@@ -4,7 +4,7 @@ import Chat from "../components/Chat";
 import Search from "../components/Search";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
-import './ChatContainer.css'
+// import './ChatContainer.css'
 
 const ChatContainer = ({socket, fetchChats}) => {
 
@@ -110,27 +110,47 @@ const ChatContainer = ({socket, fetchChats}) => {
     }
 
     return (
-        <div className="chat-container">
-            <header className="chat-header">
-                <div className="p-text">
-                    <p>You are logged in as:</p>
-                    <p>{loggedInUser.username}</p>
-                </div>
-                <div className="log-out-btn">
-                    <button onClick={logOut} alt="log out button">Logout</button>
-                </div>
-            </header>
-            <main className="chat-main">
-                <section id="friends-list-section">
-                    <Search filteredFun={filteredFriends} addFriend={addFriend} />
-                    <FriendsList friends={friends} filteredChats={filteredChats} currentFriendChat={currentFriendChat} deleteFriend={deleteFriend} />
-                </section>
-                <section>
-                    {currentChat && currentChat.users.length > 0 ? <Chat socket={socket} currentChat={currentChat} updateChat={updateChat}/> : <></>}  
-                </section>
-            </main>        
-        </div>
-    )
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+        <header className="w-full max-w-5xl bg-white rounded-lg shadow p-4 flex justify-between items-center mb-6">
+          <div>
+            <p className="text-gray-600">You are logged in as:</p>
+            <p className="font-semibold text-xl">{loggedInUser.username}</p>
+          </div>
+          <button
+            onClick={logOut}
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+          >
+            Logout
+          </button>
+        </header>
+
+        <main className="w-full max-w-5xl bg-white rounded-lg shadow flex">
+          <section className="w-1/3 border-r border-gray-200 p-4 flex flex-col">
+            <Search filteredFun={filteredFriends} addFriend={addFriend} />
+            <FriendsList
+              friends={friends}
+              filteredChats={filteredChats}
+              currentFriendChat={currentFriendChat}
+              deleteFriend={deleteFriend}
+            />
+          </section>
+
+          <section className="w-2/3 p-4">
+            {currentChat && currentChat.users.length > 0 ? (
+              <Chat
+                socket={socket}
+                currentChat={currentChat}
+                updateChat={updateChat}
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full text-gray-500">
+                Select a chat to start messaging
+              </div>
+            )}
+          </section>
+        </main>
+      </div>
+    );
 }
 
 export default ChatContainer;

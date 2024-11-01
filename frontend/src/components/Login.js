@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import UserContext from "../UserContext";
 import { Link, useNavigate } from 'react-router-dom'
-import './Login.css'
+// import './Login.css'
 
 const Login = ({fetchLogIn}) => {
     const navigate = useNavigate()
@@ -33,40 +33,71 @@ const Login = ({fetchLogIn}) => {
     }
 
     return (
-        <div className="login-container">
-        <div className="login">
-            <form onSubmit={handleSubmit}>
-                <h2>Log In</h2>
-                {loggedInUser !== undefined && loggedInUser.message ? 
-                <p className="display">{loggedInUser.message}</p>
-                :
-                <p className="hidden"></p>
-                }
-                <label htmlFor="username">Username or Email:</label>
-                <input type="text"
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <h2 className="text-2xl font-semibold text-center text-gray-700">
+              Log In
+            </h2>
+
+            {loggedInUser !== undefined && loggedInUser.message ? (
+              <p className="text-red-500 text-sm text-center">
+                {loggedInUser.message}
+              </p>
+            ) : (
+              <p className="hidden"></p>
+            )}
+
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-600"
+              >
+                Username or Email:
+              </label>
+              <input
+                type="text"
                 id="login-username"
                 name="username"
                 placeholder="Username or Email"
                 onChange={handleChange}
-                />
+                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-                <label htmlFor="password">Password:</label>
-                <input type="password"
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-600"
+              >
+                Password:
+              </label>
+              <input
+                type="password"
                 id="login-password"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
-                />
+                className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
 
-                <input id="login-btn" type="submit" value="Log in" />
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+            >
+              Log in
+            </button>
 
-                <Link to="signup">
-                    <p>Sign up</p>
-                </Link>
-            </form>
+            <div className="text-center">
+              <Link to="signup" className="text-blue-500 hover:underline">
+                <p>Sign up</p>
+              </Link>
+            </div>
+          </form>
         </div>
-        </div>
-    )
+      </div>
+    );
 }
 
 export default Login

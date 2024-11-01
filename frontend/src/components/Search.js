@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../UserContext";
 import { Autocomplete, TextField } from "@mui/material";
-import "./Search.css";
+// import "./Search.css";
 
 const Search = ({ filteredFun, addFriend }) => {
   const { loggedInUser, users } = useContext(UserContext);
@@ -84,7 +84,7 @@ const Search = ({ filteredFun, addFriend }) => {
   };
 
   return (
-    <div className="search">
+    <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-md space-y-4">
       <Autocomplete
         freeSolo
         disableClearable
@@ -97,21 +97,28 @@ const Search = ({ filteredFun, addFriend }) => {
           <TextField
             {...params}
             label="Search username"
+            className="w-full"
             InputProps={{
               ...params.InputProps,
               type: "search",
+              className:
+                "p-2 text-gray-700 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500",
             }}
           />
         )}
       />
-      <div className="right">
-        <button id="search-btn" onClick={handleSubmit} alt="search button">
+      <div className="flex space-x-4">
+        <button
+          id="search-btn"
+          onClick={handleSubmit}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200 focus:outline-none"
+        >
           🔍
         </button>
         <button
           id="add-btn"
           onClick={handleClickToAddFriend}
-          alt="add friend button"
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-200 focus:outline-none"
         >
           ➕
         </button>

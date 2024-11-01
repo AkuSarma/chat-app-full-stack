@@ -43,18 +43,29 @@ const AppContainer = () => {
 
 
     return loggedInUser && loggedInUser.username ? (
-        // if logged in, open chat page
-        <UserContext.Provider value={{loggedInUser, users, chats, setLoggedInUser}}>
-            <Routes>
-                <Route path='/chat' element={<ChatContainer socket={socket} fetchChats={fetchChats}/>}/>
-            </Routes>
-        </UserContext.Provider>
-        // else, 
+      // if logged in, open chat page
+      <UserContext.Provider
+        value={{ loggedInUser, users, chats, setLoggedInUser }}
+      >
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+          <Routes>
+            <Route
+              path="/chat"
+              element={
+                <ChatContainer socket={socket} fetchChats={fetchChats} />
+              }
+            />
+          </Routes>
+        </div>
+      </UserContext.Provider>
     ) : (
-        <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
-            <UserContainer addUser={addUser}/> 
-        </UserContext.Provider>
-        )
+      // else, show login/register page
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+        <div className="min-h-screen flex items-center justify-center bg-blue-50">
+          <UserContainer addUser={addUser} />
+        </div>
+      </UserContext.Provider>
+    );
 }
 
 export default AppContainer;
