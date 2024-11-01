@@ -35,7 +35,7 @@ const Chat = ({currentChat, updateChat, socket}) => {
     })
 
     return (
-      <div className="flex flex-col h-full min-w-[80vw] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="flex flex-col h-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <header className="p-4 bg-blue-600 text-white font-bold text-center">
           <h2>{findUsername()}</h2>
         </header>
